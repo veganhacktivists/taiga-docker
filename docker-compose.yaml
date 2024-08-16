@@ -20,6 +20,29 @@ services:
 
   taiga-back:
     image: ghcr.io/veganhacktivists/taiga-back:latest
+    environment:
+      POSTGRES_DB: "taiga"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_HOST: "taiga-db"
+      TAIGA_SECRET_KEY: "${SECRET_KEY}"
+      TAIGA_SITES_SCHEME: "${TAIGA_SCHEME}"
+      TAIGA_SITES_DOMAIN: "${TAIGA_DOMAIN}"
+      TAIGA_SUBPATH: "${SUBPATH}"
+      EMAIL_BACKEND: "django.core.mail.backends.${EMAIL_BACKEND}.EmailBackend"
+      DEFAULT_FROM_EMAIL: "${EMAIL_DEFAULT_FROM}"
+      EMAIL_USE_TLS: "${EMAIL_USE_TLS}"
+      EMAIL_USE_SSL: "${EMAIL_USE_SSL}"
+      EMAIL_HOST: "${EMAIL_HOST}"
+      EMAIL_PORT: "${EMAIL_PORT}"
+      EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
+      EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
+      RABBITMQ_USER: "${RABBITMQ_USER}"
+      RABBITMQ_PASS: "${RABBITMQ_PASS}"
+      ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
+    volumes:
+      - taiga-static-data:/taiga-back/static
+      - taiga-media-data:/taiga-back/media
     networks:
       - taiga
     depends_on:
@@ -33,6 +56,29 @@ services:
   taiga-async:
     image: ghcr.io/veganhacktivists/taiga-back:latest
     entrypoint: ["/taiga-back/docker/async_entrypoint.sh"]
+    environment:
+      POSTGRES_DB: "taiga"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_HOST: "taiga-db"
+      TAIGA_SECRET_KEY: "${SECRET_KEY}"
+      TAIGA_SITES_SCHEME: "${TAIGA_SCHEME}"
+      TAIGA_SITES_DOMAIN: "${TAIGA_DOMAIN}"
+      TAIGA_SUBPATH: "${SUBPATH}"
+      EMAIL_BACKEND: "django.core.mail.backends.${EMAIL_BACKEND}.EmailBackend"
+      DEFAULT_FROM_EMAIL: "${EMAIL_DEFAULT_FROM}"
+      EMAIL_USE_TLS: "${EMAIL_USE_TLS}"
+      EMAIL_USE_SSL: "${EMAIL_USE_SSL}"
+      EMAIL_HOST: "${EMAIL_HOST}"
+      EMAIL_PORT: "${EMAIL_PORT}"
+      EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
+      EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
+      RABBITMQ_USER: "${RABBITMQ_USER}"
+      RABBITMQ_PASS: "${RABBITMQ_PASS}"
+      ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
+    volumes:
+      - taiga-static-data:/taiga-back/static
+      - taiga-media-data:/taiga-back/media
     networks:
       - taiga
     depends_on:
@@ -62,11 +108,8 @@ services:
       TAIGA_URL: "${TAIGA_SCHEME}://${TAIGA_DOMAIN}"
       TAIGA_WEBSOCKETS_URL: "${WEBSOCKETS_SCHEME}://${TAIGA_DOMAIN}"
       TAIGA_SUBPATH: "${SUBPATH}"
-      # ...your customizations go here
     networks:
       - taiga
-    # volumes:
-    #   - ./conf.json:/usr/share/nginx/html/conf.json
 
   taiga-events:
     image: taigaio/taiga-events:latest
