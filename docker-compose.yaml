@@ -20,8 +20,6 @@ services:
 
   taiga-back:
     image: ghcr.io/veganhacktivists/taiga-back:latest
-    environment: *default-back-environment
-    volumes: *default-back-volumes
     networks:
       - taiga
     depends_on:
@@ -35,8 +33,6 @@ services:
   taiga-async:
     image: ghcr.io/veganhacktivists/taiga-back:latest
     entrypoint: ["/taiga-back/docker/async_entrypoint.sh"]
-    environment: *default-back-environment
-    volumes: *default-back-volumes
     networks:
       - taiga
     depends_on:
