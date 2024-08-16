@@ -19,7 +19,7 @@ services:
       - taiga
 
   taiga-back:
-    image: ghcr.io/veganhacktivists/taiga-back:latest
+    image: ghcr.io/veganhacktivists/taiga-back:coolify
     environment:
       POSTGRES_DB: "taiga"
       POSTGRES_USER: "${POSTGRES_USER}"
@@ -54,7 +54,7 @@ services:
         condition: service_started
 
   taiga-async:
-    image: ghcr.io/veganhacktivists/taiga-back:latest
+    image: ghcr.io/veganhacktivists/taiga-back:coolify
     entrypoint: ["/taiga-back/docker/async_entrypoint.sh"]
     environment:
       POSTGRES_DB: "taiga"
@@ -103,7 +103,7 @@ services:
       - taiga
 
   taiga-front:
-    image: ghcr.io/veganhacktivists/taiga-front:latest
+    image: ghcr.io/veganhacktivists/taiga-front:coolify
     environment:
       TAIGA_URL: "${TAIGA_SCHEME}://${TAIGA_DOMAIN}"
       TAIGA_WEBSOCKETS_URL: "${WEBSOCKETS_SCHEME}://${TAIGA_DOMAIN}"
