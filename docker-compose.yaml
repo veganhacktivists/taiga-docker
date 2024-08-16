@@ -13,6 +13,8 @@ services:
       timeout: 15s
       retries: 5
       start_period: 3s
+    ports:
+      - "127.0.0.1:5338:5432"
     volumes:
       - taiga-db-data:/var/lib/postgresql/data
     networks:
