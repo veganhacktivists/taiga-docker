@@ -55,7 +55,7 @@ services:
       - taiga
 
   taiga-back:
-    image: taigaio/taiga-back:latest
+    image: ghcr.io/veganhacktivists/taiga-back:latest
     environment: *default-back-environment
     volumes: *default-back-volumes
     networks:
@@ -69,7 +69,7 @@ services:
         condition: service_started
 
   taiga-async:
-    image: taigaio/taiga-back:latest
+    image: ghcr.io/veganhacktivists/taiga-back:latest
     entrypoint: ["/taiga-back/docker/async_entrypoint.sh"]
     environment: *default-back-environment
     volumes: *default-back-volumes
@@ -97,7 +97,7 @@ services:
       - taiga
 
   taiga-front:
-    image: taigaio/taiga-front:latest
+    image: ghcr.io/veganhacktivists/taiga-front:latest
     environment:
       TAIGA_URL: "${TAIGA_SCHEME}://${TAIGA_DOMAIN}"
       TAIGA_WEBSOCKETS_URL: "${WEBSOCKETS_SCHEME}://${TAIGA_DOMAIN}"
