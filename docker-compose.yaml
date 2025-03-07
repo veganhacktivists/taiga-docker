@@ -161,7 +161,6 @@ services:
 volumes:
   taiga-static-data:
   taiga-media-data:
-  taiga-db-data:
   taiga-db-data-new:
   taiga-async-rabbitmq-data:
   taiga-events-rabbitmq-data:
