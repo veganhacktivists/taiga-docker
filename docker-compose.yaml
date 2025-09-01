@@ -113,7 +113,7 @@ services:
       - taiga
 
   taiga-events:
-    image: taigaio/taiga-events:latest
+    image: ghcr.io/veganhacktivists/taiga-events:main
     environment:
       RABBITMQ_USER: "${RABBITMQ_USER}"
       RABBITMQ_PASS: "${RABBITMQ_PASS}"
